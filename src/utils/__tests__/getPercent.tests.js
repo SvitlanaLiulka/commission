@@ -1,4 +1,4 @@
-import { getPercent } from '../getPersent.js';
+import { getPercent } from '../getPercent.js';
 
 describe('get percent from value', () => {
   it('get percent from value', () => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getCashIn } from '../getCashIn.js';
 import { getCashOutLegal } from '../getCashOutLegal.js';
 import { getCashOutNatural } from '../getCashOutNatural.js';
-import { BASE_URL } from '../../constants/baseUrl.js';
+import { API_CASH_IN, API_CASH_OUT_LEGAL, API_CASH_OUT_NATURAL } from '../../constants/urlAPI.js';
 
 jest.mock('axios');
 
@@ -17,7 +17,7 @@ describe('get response from cash-in API', () => {
 
   const getCashInAPI = await getCashIn();
 
-  expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/cash-in`);
+  expect(axios.get).toHaveBeenCalledWith(API_CASH_IN);
   expect(getCashInAPI).toEqual({ cashIn: responseForCashIn.data });
   })
 })
@@ -28,7 +28,7 @@ describe('get response from cash-out API for legal person', () => {
 
     const getCashOutLegalAPI = await getCashOutLegal();
 
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/cash-out-juridical`);
+    expect(axios.get).toHaveBeenCalledWith(API_CASH_OUT_LEGAL);
     expect(getCashOutLegalAPI).toEqual({ cashOutLegal: responseForLegal.data });
   })
 })
@@ -39,7 +39,7 @@ describe('get response from cash-out API for natural person', () => {
 
     const getCashOutNaturalAPI = await getCashOutNatural();
 
-    expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/cash-out-natural`);
+    expect(axios.get).toHaveBeenCalledWith(API_CASH_OUT_NATURAL);
     expect(getCashOutNaturalAPI).toEqual({ cashOutNatural: responseForNatural.data });
   })
 })

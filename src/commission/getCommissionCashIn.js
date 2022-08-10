@@ -1,13 +1,9 @@
-import { getPercent } from '../utils/getPersent.js';
+import { getPercent } from '../utils/getPercent.js';
 
-export const getCommissionCashIn = (value, data) => {
- const { cashIn } = data;
-  const percent = getPercent(value, cashIn.percents);
-    if (percent > cashIn.max.amount) {
-      console.log(cashIn.max.amount.toFixed(2));
-      return cashIn.max.amount.toFixed(2)
-    }
-      console.log(percent.toFixed(2));
+export const getCommissionCashIn = (value, commissionConfig) => {
+  const { cashIn } = commissionConfig;
+  const percent = (getPercent(value, cashIn.percents)).toFixed(2);
 
-      return percent.toFixed(2);
+  console.log(percent > cashIn.max.amount ? cashIn.max.amount.toFixed(2) : percent);
+  return percent > cashIn.max.amount ? cashIn.max.amount.toFixed(2) : percent;
 };

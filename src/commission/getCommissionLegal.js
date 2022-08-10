@@ -1,12 +1,9 @@
-import { getPercent } from '../utils/getPersent.js';
+import { getPercent } from '../utils/getPercent.js';
 
-export const getCommissionLegal = (value, data) => {
-  const { cashOutLegal } = data;
-  const percent = getPercent(value, cashOutLegal.percents);
-    if (percent < cashOutLegal.min.amount) {
-      console.log(cashOutLegal.min.amount.toFixed(2));
-      return cashOutLegal.min.amount.toFixed(2)
-    }
-      console.log(percent.toFixed(2));
-      return percent.toFixed(2);
+export const getCommissionCashOutLegal = (value, commissionConfig) => {
+  const { cashOutLegal } = commissionConfig;
+  const percent = (getPercent(value, cashOutLegal.percents)).toFixed(2);
+
+  console.log(percent < cashOutLegal.min.amount ? cashOutLegal.min.amount.toFixed(2) : percent);
+  return percent < cashOutLegal.min.amount ? cashOutLegal.min.amount.toFixed(2) : percent;
 };
