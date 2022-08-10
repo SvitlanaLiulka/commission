@@ -1,16 +1,17 @@
-import { getCashIn } from '../api/getCashIn.js';
-import { getCashOutLegal } from '../api/getCashOutLegal.js';
-import { getCashOutNatural } from '../api/getCashOutNatural.js';
+import { getConfigForCashIn } from '../api/getConfigForCashIn.js';
+import { getConfigCashOutLegal } from '../api/getConfigCashOutLegal.js';
+import { getConfigCashOutNatural } from '../api/getConfigCashOutNatural.js';
 
 export const getConfigFromAPI = () => {
-  const data = [
-    getCashIn(),
-    getCashOutLegal(),
-    getCashOutNatural(),
+  const dataConfigAPI = [
+    getConfigForCashIn(),
+    getConfigCashOutLegal(),
+    getConfigCashOutNatural(),
   ];
 
-  return Promise.all(data).then((response) => (
+  return Promise.all(dataConfigAPI).then((response) => (
     response.reduce((accumulator, currentValue) => (
     { ...accumulator, ...currentValue }), {})
-  ));
+  ))
+    .catch((error) => console.error(error.message));
 }

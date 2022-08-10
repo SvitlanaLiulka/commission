@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { getCashIn } from '../getCashIn.js';
-import { getCashOutLegal } from '../getCashOutLegal.js';
-import { getCashOutNatural } from '../getCashOutNatural.js';
-import { API_CASH_IN, API_CASH_OUT_LEGAL, API_CASH_OUT_NATURAL } from '../../constants/urlAPI.js';
+import { getConfigForCashIn } from '../getConfigForCashIn.js';
+import { getConfigCashOutLegal } from '../getConfigCashOutLegal.js';
+import { getConfigCashOutNatural } from '../getConfigCashOutNatural.js';
+import { API_CASH_IN, API_CASH_OUT_LEGAL, API_CASH_OUT_NATURAL } from '../../constants/urlForAPI.js';
 
 jest.mock('axios');
 
@@ -15,7 +15,7 @@ describe('get response from cash-in API', () => {
   it('get response from cash-in API', async () => {
   axios.get.mockReturnValue(Promise.resolve(responseForCashIn));
 
-  const getCashInAPI = await getCashIn();
+  const getCashInAPI = await getConfigForCashIn();
 
   expect(axios.get).toHaveBeenCalledWith(API_CASH_IN);
   expect(getCashInAPI).toEqual({ cashIn: responseForCashIn.data });
@@ -26,7 +26,7 @@ describe('get response from cash-out API for legal person', () => {
   it('get response from cash-out API for legal person', async () => {
     axios.get.mockReturnValue(Promise.resolve(responseForLegal));
 
-    const getCashOutLegalAPI = await getCashOutLegal();
+    const getCashOutLegalAPI = await getConfigCashOutLegal();
 
     expect(axios.get).toHaveBeenCalledWith(API_CASH_OUT_LEGAL);
     expect(getCashOutLegalAPI).toEqual({ cashOutLegal: responseForLegal.data });
@@ -37,7 +37,7 @@ describe('get response from cash-out API for natural person', () => {
   it('get response from cash-out API for natural person', async () => {
     axios.get.mockReturnValue(Promise.resolve(responseForNatural));
 
-    const getCashOutNaturalAPI = await getCashOutNatural();
+    const getCashOutNaturalAPI = await getConfigCashOutNatural();
 
     expect(axios.get).toHaveBeenCalledWith(API_CASH_OUT_NATURAL);
     expect(getCashOutNaturalAPI).toEqual({ cashOutNatural: responseForNatural.data });
