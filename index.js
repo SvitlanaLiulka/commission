@@ -4,14 +4,15 @@ import { getDataFromFile } from './src/utils/getConfigFromJSON.js';
 
 const calculateCommission = async (data) => {
   const response = await getConfigFromAPI();
-  data.map((value) => CALCULATE_COMMISSION_MAP[value.user_type][value.type](
+  const result = data.map((value) => CALCULATE_COMMISSION_MAP[value.user_type][value.type](
     value.operation.amount,
     response,
     value.date,
     value.user_id,
   ));
+  console.log(...result);
 }
 
-const JSONFile = getDataFromFile(pathToJSON);
+const JSONFile = getDataFromFile('input.json');
 
 console.log(calculateCommission(JSONFile));

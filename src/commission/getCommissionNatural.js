@@ -35,7 +35,6 @@ export const getCommissionCashOutNatural = (value, data, date, user_id) => {
         value: newValue,
         amount: newAmount,
     }}
-    console.log((userId[user_id][numberOfWeek].value).toFixed(2));
 
     return (userId[user_id][numberOfWeek].value).toFixed(2);
 };

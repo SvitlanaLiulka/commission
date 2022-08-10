@@ -3,7 +3,6 @@ import { getCommissionCashOutLegal } from '../getCommissionLegal.js';
 import { getCommissionCashOutNatural } from '../getCommissionNatural.js';
 import { DATA_FROM_API } from '../../constants/geDataFromAPI.js';
 
-const logShy = jest.spyOn(console, 'log');
 
 describe('get commission for cash-in operation', () => {
   it('get commission for cash-in operation', () => {
@@ -21,22 +20,22 @@ describe('cash-out commission legal person', () => {
 
 describe('get commission for cash-out for natural person', () => {
   it('get commission for cash-out for natural person', () => {
-    getCommissionCashOutNatural(100, DATA_FROM_API, '2022-08-01', 1);
-    expect(logShy).toHaveBeenCalledWith('0.00');
+    const result = getCommissionCashOutNatural(100, DATA_FROM_API, '2022-08-01', 1);
+    expect(result).toBe('0.00');
   });
 
   it('get commission for cash-out for natural person', () => {
-    getCommissionCashOutNatural(1000, DATA_FROM_API, '2022-08-02', 1);
-    expect(logShy).toHaveBeenCalledWith('0.30');
+    const result = getCommissionCashOutNatural(1000, DATA_FROM_API, '2022-08-02', 1);
+    expect(result).toBe('0.30');
   });
 
   it('get commission for cash-out for natural person', () => {
-    getCommissionCashOutNatural(2000, DATA_FROM_API, '2022-08-02', 1);
-    expect(logShy).toHaveBeenCalledWith('6.00');
+    const result = getCommissionCashOutNatural(2000, DATA_FROM_API, '2022-08-02', 1);
+    expect(result).toBe('6.00');
   });
 
   it('get commission for cash-out for natural person', () => {
-    getCommissionCashOutNatural(10000, DATA_FROM_API, '2022-05-19', 3);
-    expect(logShy).toHaveBeenCalledWith('27.00');
+    const result = getCommissionCashOutNatural(10000, DATA_FROM_API, '2022-05-19', 3);
+    expect(result).toBe('27.00');
   })
 })
