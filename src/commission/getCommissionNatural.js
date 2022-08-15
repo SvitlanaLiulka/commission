@@ -10,15 +10,15 @@ export const getCommissionCashOutNatural = (operationAmount, commissionConfig, d
   const currentUser = usersId[user_id];
   const currentWeek = currentUser && currentUser[numberOfCurrentWeek];
 
-  let amountLimitOfWeek = currentWeek?.amountLimitOfWeek || week_limit.amount;
+  let amountLimitOfWeek = currentWeek?.amountLimitOfWeek ?? week_limit.amount;
   let commissionAmount;
 
   if (operationAmount > amountLimitOfWeek) {
-    amountLimitOfWeek = amountLimitOfWeek < 0 ? -operationAmount : amountLimitOfWeek - operationAmount;
-    commissionAmount = getPercent(amountLimitOfWeek, percents);
+    commissionAmount = getPercent(operationAmount - amountLimitOfWeek, percents);
+    amountLimitOfWeek = 0;
   } else {
-      amountLimitOfWeek -= operationAmount
-      commissionAmount = 0
+      amountLimitOfWeek -= operationAmount;
+      commissionAmount = 0;
     }
 
   usersId[user_id] = {
@@ -28,5 +28,5 @@ export const getCommissionCashOutNatural = (operationAmount, commissionConfig, d
     }
   }
 
-  return getDecimalAdjust(usersId[user_id][numberOfCurrentWeek].commissionAmount, -2);
+  return getDecimalAdjust(usersId[user_id][numberOfCurrentWeek].commissionAmount);
 }

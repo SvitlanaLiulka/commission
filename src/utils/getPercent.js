@@ -1,1 +1,1 @@
-export const getPercent = (value, percents) => Math.abs(value * percents / 100);
+export const getPercent = (value, percents) => value * percents / 100;
