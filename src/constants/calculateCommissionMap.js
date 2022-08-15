@@ -1,4 +1,4 @@
-import { getCommissionCashOutNatural} from '../commission/getCommissionNatural.js';
+import { getCommissionCashOutNatural } from '../commission/getCommissionNatural.js';
 import { getCommissionCashIn } from '../commission/getCommissionCashIn.js';
 import { getCommissionCashOutLegal } from '../commission/getCommissionLegal.js';
 

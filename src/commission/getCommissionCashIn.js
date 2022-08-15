@@ -1,8 +1,8 @@
 import { getPercent } from '../utils/getPercent.js';
+import { getDecimalAdjust } from '../utils/getDecimalAdjust.js';
 
 export const getCommissionCashIn = (operationAmount, commissionConfig) => {
   const { cashIn } = commissionConfig;
-  const percent = (getPercent(operationAmount, cashIn.percents)).toFixed(2);
-
-    return percent > cashIn.max.amount ? cashIn.max.amount.toFixed(2) : percent;
+  const percent = getPercent(operationAmount, cashIn.percents);
+  return percent > cashIn.max.amount ? getDecimalAdjust(cashIn.max.amount, -2) : getDecimalAdjust(percent, -2);
 };

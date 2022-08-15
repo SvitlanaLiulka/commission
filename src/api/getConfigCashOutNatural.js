@@ -2,7 +2,13 @@ import axios from 'axios';
 import { API_CASH_OUT_NATURAL } from '../constants/urlForAPI.js';
 
 export const getConfigCashOutNatural = async () => {
-  const configAPI = await axios.get(API_CASH_OUT_NATURAL).catch((error) => console.log(error.message));
-
-  return { cashOutNatural: configAPI.data };
+  try {
+    const configAPI = await axios.get(API_CASH_OUT_NATURAL);
+    return { cashOutNatural: configAPI.data };
+  } catch (err) {
+      if (err.status !== 200) {
+      console.error(err.message);
+      process.exit()
+    }
+  }
 }
