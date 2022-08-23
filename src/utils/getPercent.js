@@ -1,1 +1,3 @@
-export const getPercent = (value, percents) => value * percents / 100;
+export const getPercent = (value, percents) => {
+  return (value * percents) / 100;
+};
